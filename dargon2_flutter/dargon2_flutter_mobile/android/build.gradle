@@ -22,7 +22,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 34
     namespace 'com.tejasmehta.dargon2_flutter_mobile'
     externalNativeBuild {
         // Argon2 Library build Configuration
@@ -32,7 +32,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
     lintOptions {
         disable 'InvalidPackage'

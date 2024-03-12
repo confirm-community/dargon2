@@ -76,11 +76,10 @@ packages:
   dargon2_interface:
     dependency: "direct main"
     description:
-      name: dargon2_interface
-      sha256: a4468c116524376161dda9f65d69e306b87427e527d6598e45cc774d764359b1
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
+      path: "../dargon2_interface"
+      relative: true
+    source: path
+    version: "1.1.1"
   ffi:
     dependency: "direct main"
     description:
@@ -394,4 +393,4 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.0 <3.0.0"
+  dart: ">=2.19.0 <4.0.0"

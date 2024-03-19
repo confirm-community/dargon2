@@ -9,7 +9,6 @@ import 'dart:isolate';
 
 import 'package:dargon2_core/dargon2_core.dart';
 // ignore: deprecated_member_use
-import 'dart:cli';
 
 /// The Dylib Loader for any Dart native apps, regardless of platform. Loads the dylib
 /// from the given path, based off a conditional import on dart:ui

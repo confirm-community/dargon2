@@ -36,6 +36,8 @@ enum Argon2Version {
 ///
 /// This should be used via the [argon2] field.
 abstract class DArgon2 {
+  Future<void> initialize();
+
   /// The Future method to hash a [String] password with Argon2
   ///
   /// Needs a UTF-8 String [password] and a [salt] to be given with

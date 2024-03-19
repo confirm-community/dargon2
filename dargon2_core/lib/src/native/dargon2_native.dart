@@ -17,9 +17,9 @@ class DArgon2Native extends DArgon2 {
 
   late final LibLoader loader;
 
-  Future<DArgon2Native> initialize() async {
+  @override
+  Future<void> initialize() async {
     await LocalBinder.initialize(loader);
-    return this;
   }
 
   /// The method to hash a byte array of type List<int> with Argon2.

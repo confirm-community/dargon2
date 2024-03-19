@@ -1,8 +1,10 @@
 name: dargon2
 
 on:
-  # push:
-  # pull_request:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 defaults:
   run:

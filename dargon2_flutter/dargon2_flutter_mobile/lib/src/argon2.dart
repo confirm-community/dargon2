@@ -15,7 +15,7 @@ class DArgon2Mobile extends DArgon2Platform {
   /// The loaded instance of [DArgon2], which is a [DArgon2Native] instance
   /// as opposed to the web variant. This instance requires a
   /// [FlutterLibLoader]
-  DArgon2 argon2 = DArgon2Native(FlutterLibLoader());
+  DArgon2 argon2 = DArgon2Native(loader: FlutterLibLoader())..initialize();
 
   /// Register the plugin's platform instance as an instance of this class,
   /// [DArgon2Mobile].

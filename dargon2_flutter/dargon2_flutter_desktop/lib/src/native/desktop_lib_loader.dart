@@ -18,17 +18,17 @@ class DesktopLibLoader implements LibLoader {
   ///
   /// Returns a [DynamicLibrary], which is the Argon2 Library
   @override
-  DynamicLibrary loadLib() {
+  Future<DynamicLibrary> loadLib() async {
     if (Platform.isMacOS) {
       return DynamicLibrary.process();
     }
-    return DynamicLibrary.open(getPath());
+    return DynamicLibrary.open(await getPath());
   }
 
   /// The getPath method, set to handle paths from just the Linux or Windows part
   /// of a Flutter plugin as macOS is already handled with the .process()
   @override
-  String getPath() => Platform.isLinux
+  Future<String> getPath() async => Platform.isLinux
       ? "${File(Platform.resolvedExecutable).parent.path}"
           "/lib/libargon2.so"
       : "argon2.dll";

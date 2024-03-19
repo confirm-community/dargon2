@@ -14,7 +14,7 @@ class DArgon2Desktop extends DArgon2Platform {
   /// The loaded instance of [DArgon2], which is a [DArgon2Native] instance
   /// as opposed to the web variant. This instance requires a
   /// [DesktopLibLoader]
-  DArgon2 argon2 = DArgon2Native(DesktopLibLoader());
+  DArgon2 argon2 = DArgon2Native(loader: DesktopLibLoader())..initialize();
 
   /// Register the plugin's platform instance as an instance of this class,
   /// [DArgon2Desktop].

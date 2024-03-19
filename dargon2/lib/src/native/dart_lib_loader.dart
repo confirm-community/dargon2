@@ -20,18 +20,18 @@ class DartLibLoader implements LibLoader {
   ///
   /// Returns a [DynamicLibrary], which is the Argon2 Library
   @override
-  DynamicLibrary loadLib() {
-    return DynamicLibrary.open(getPath());
+  Future<DynamicLibrary> loadLib() async {
+    return DynamicLibrary.open(await getPath());
   }
 
   /// The private getPath method, set to handle paths from all 3 Desktop platforms.
   /// Returns the relative library location for desktops based on the plugin's location
   /// and the binary's relative path
   @override
-  String getPath() {
+  Future<String> getPath() async {
     final rootLibrary = 'package:dargon2/dargon2.dart';
     // ignore: deprecated_member_use
-    var rootPath = waitFor(Isolate.resolvePackageUri(Uri.parse(rootLibrary)))!
+    var rootPath = (await Isolate.resolvePackageUri(Uri.parse(rootLibrary)))!
         .resolve('src/blobs/')
         .toFilePath(windows: Platform.isWindows);
     if (Platform.isMacOS) return '${rootPath}libargon2-darwin.dylib';

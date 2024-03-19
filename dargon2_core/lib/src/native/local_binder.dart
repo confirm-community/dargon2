@@ -126,8 +126,23 @@ class LocalBinder {
   /// Create an instanced class in order to allow the dylib to stay loaded through the session.
   static late LocalBinder _privateInstance;
 
-  static void initialize(LibLoader libLoader) =>
-      _privateInstance = LocalBinder._(libLoader);
+  static Future<void> initialize(LibLoader libLoader) async {
+    _privateInstance = LocalBinder();
+
+    var argon2lib = await libLoader.loadLib();
+    _privateInstance.getHash = argon2lib
+        .lookup<NativeFunction<_CArgon2Hash>>('argon2_hash')
+        .asFunction<_Argon2Hash>();
+    _privateInstance.verifyHash = argon2lib
+        .lookup<NativeFunction<_CArgon2Verify>>('argon2_verify')
+        .asFunction<_Argon2Verify>();
+    _privateInstance.getEncodedHashLength = argon2lib
+        .lookup<NativeFunction<_CArgon2Encodedlen>>('argon2_encodedlen')
+        .asFunction<_Argon2Encodedlen>();
+    _privateInstance.getErrorMessage = argon2lib
+        .lookup<NativeFunction<_CArgon2ErrorMessage>>('argon2_error_message')
+        .asFunction<_Argon2ErrorMessage>();
+  }
 
   /// Callable method of type [_Argon2Hash] that binds to [_CArgon2Hash].
   late _Argon2Hash getHash;
@@ -145,25 +160,5 @@ class LocalBinder {
   /// If not, a new Instance is created and set as the private instance, then returned.
   static LocalBinder get instance {
     return _privateInstance;
-  }
-
-  /// The class constructor, which handles loading the dylib and mapping each method to their
-  /// respective C equivalents
-  ///
-  /// Opens the C library using dart's ffi and maps all of the main methods
-  LocalBinder._(LibLoader libLoader) {
-    var argon2lib = libLoader.loadLib();
-    getHash = argon2lib
-        .lookup<NativeFunction<_CArgon2Hash>>('argon2_hash')
-        .asFunction<_Argon2Hash>();
-    verifyHash = argon2lib
-        .lookup<NativeFunction<_CArgon2Verify>>('argon2_verify')
-        .asFunction<_Argon2Verify>();
-    getEncodedHashLength = argon2lib
-        .lookup<NativeFunction<_CArgon2Encodedlen>>('argon2_encodedlen')
-        .asFunction<_Argon2Encodedlen>();
-    getErrorMessage = argon2lib
-        .lookup<NativeFunction<_CArgon2ErrorMessage>>('argon2_error_message')
-        .asFunction<_Argon2ErrorMessage>();
   }
 }

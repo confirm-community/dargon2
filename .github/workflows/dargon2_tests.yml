@@ -29,4 +29,4 @@ jobs:
     - name: Install dependencies
       run: dart pub get
     - name: Run tests
-      run: dart pub --enable_deprecated_wait_for run test 
+      run: dart --enable_deprecated_wait_for test 

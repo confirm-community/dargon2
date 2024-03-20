@@ -23,7 +23,7 @@ class DArgon2Desktop extends DArgon2Platform {
 
   /// Register the plugin's platform instance as an instance of this class,
   /// [DArgon2Desktop].
-  static void registerWith() async {
+  static Future<void> registerWith() async {
     DArgon2Platform.instance = DArgon2Desktop();
     await DArgon2Platform.instance.initialize();
   }

@@ -2,20 +2,21 @@ import 'dart:ffi';
 
 import 'package:dargon2_core/dargon2_core.dart';
 
-void main() {
+void main() async {
   // Create an instance of DArgon2
-  final argon2 = DArgon2Native(TestLibLoader());
+  final argon2 = DArgon2Native(loader: TestLibLoader());
+  await argon2.initialize();
 }
 
 class TestLibLoader implements LibLoader {
   @override
-  String getPath() {
+  Future<String> getPath() async {
     // Return the Argon2 Reference Library's path here
     throw UnimplementedError();
   }
 
   @override
-  DynamicLibrary loadLib() {
+  Future<DynamicLibrary> loadLib() async {
     // Return the actual loaded DynamicLibary here
     throw UnimplementedError();
   }

@@ -28,6 +28,8 @@ abstract class DArgon2Platform extends PlatformInterface with DArgon2 {
   /// The default instance of [DArgon2Platform] to use.
   static DArgon2Platform get instance => _instance;
 
+  Future<void> initialize();
+
   /// The setter to change the instance of [DArgon2Platform] which will be
   /// returned by the [instance] getter and [argon2] global instance.
   static set instance(DArgon2Platform instance) {

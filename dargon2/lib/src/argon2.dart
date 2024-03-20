@@ -8,4 +8,9 @@ import 'package:dargon2_core/dargon2_core.dart';
 
 /// The globally accessible instance of [DArgon2] with Dart
 /// native library loading
-final argon2 = DArgon2Native(DartLibLoader());
+late final argon2;
+
+Future<void> initDargon2() async {
+  argon2 = DArgon2Native(loader: DartLibLoader());
+  await argon2.initialize();
+}

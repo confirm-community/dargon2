@@ -13,8 +13,13 @@ import 'loaders/lib_loader.dart';
 import 'local_binder.dart';
 
 class DArgon2Native extends DArgon2 {
-  DArgon2Native(LibLoader loader) {
-    LocalBinder.initialize(loader);
+  DArgon2Native({required this.loader});
+
+  late final LibLoader loader;
+
+  @override
+  Future<void> initialize() async {
+    await LocalBinder.initialize(loader);
   }
 
   /// The method to hash a byte array of type List<int> with Argon2.

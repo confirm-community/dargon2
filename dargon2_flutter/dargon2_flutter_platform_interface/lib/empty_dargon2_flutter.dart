@@ -10,6 +10,9 @@ import 'package:dargon2_interface/dargon2_interface.dart';
 /// provides bindings to set to.
 class EmptyDArgon2Flutter extends DArgon2Platform {
   @override
+  Future<void> initialize() async {}
+
+  @override
   Future<DArgon2Result> hashPasswordBytes(List<int> password,
       {required Salt salt,
       int iterations = 32,

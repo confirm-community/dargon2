@@ -6,8 +6,9 @@ import 'package:integration_test/integration_test.dart';
 
 import 'package:dargon2_flutter_example/main.dart' as app;
 
-void main() {
+Future<void> main() async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  await argon2.initialize();
   app.main();
   // Argon2i test group
   group('Hash Tests - Argon2i', () {
